@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- 모든 쿼리에 세미콜론은 붙이지 않는다!-->
+<!-- 스프링은 자동 커밋-->
+<mapper namespace="stuMapper">
+    <!-- STUDENT 테이블과 StudentVO를 연결 하는 resultMap -->
+    <!-- 변수명을 property(속성)라고 부르기도 함 -->
+    <!-- column : 연결할 테이블의 컬럼명 -->
+    <!-- property : 테이블의 컬럼과 연결할 클래스 안의 변수 -->
+    <resultMap id="stu" type="com.green.DbTest.vo.StudentVO">
+        <result column="STU_NO"     property="stuNo"/>
+        <result column="STU_NAME"   property="stuName"/>
+        <result column="SCORE"      property="score"/>
+        <result column="ADDR"       property="addr"/>
+    </resultMap>
+
+    <insert id="insertStudent">
+        INSERT INTO STUDENT (
+            STU_NO
+            , STU_NAME
+            , SCORE
+            , ADDR
+        ) VALUES(
+            11
+            , '이순신'
+            , 95
+            , '부산'
+        )
+    </insert>
+
+    <delete id="deleteStudent">
+        DELETE FROM STUDENT
+        WHERE STU_NO = 11
+    </delete>
+
+    <delete id="delete">
+        DELETE FROM STUDENT
+        WHERE STU_NO = #{stuNo}
+    </delete>
+
+    <!-- resultType : 자바에서 기본으로 제공하는 자료형만 가능/ String, int... -->
+    <!-- resultMap : 개발자가 직접 만든 자료형 가능/ Class/ 하지만 VO의 변수통과 연결 작업이 필요 -->
+
+    <select id="selectName" resultType="String">
+        SELECT STU_NAME
+        FROM STUDENT
+        WHERE STU_NO = 1
+    </select>
+
+    <select id="selectScore" resultType="int">
+        SELECT SCORE
+        FROM STUDENT
+        WHERE STU_NO = 1
+    </select>
+
+    <select id="selectStu" resultMap="stu">
+        SELECT STU_NO
+            , STU_NAME
+            , SCORE
+            , ADDR
+        FROM STUDENT
+        WHERE STU_NO = 1
+    </select>
+
+    <!-- 한 행의 데이터를 어떻게 java로 가져올 것인가 판단, 그래서 stu가 들어가는 것.
+              여기서 List 작업을 하는 게 아님 인터페이스와 구현 메소드에서 selectList를 써야함 -->
+    <select id="selectStuList" resultMap="stu">
+        SELECT STU_NO
+            , STU_NAME
+            , SCORE
+            , ADDR
+        FROM STUDENT
+    </select>
+
+</mapper>

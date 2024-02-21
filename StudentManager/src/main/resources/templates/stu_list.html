@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            width: 600px;
+            margin: 0 auto;
+        }
+        table{
+            border: 1px solid black;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        tr, td{
+            border: 1px solid black;
+        }
+        .btn-div{
+            text-align: center;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <td>학번</td>
+                <td>학생명</td>
+                <td>국어점수</td>
+                <td>영어점수</td>
+                <td>총점</td>
+            </tr>
+            <!-- vs코드의 for-each문 -->
+            <th:block th:each="student : ${stuList}">
+                <tr>
+                    <td>[[${student.stuNo}]]</td>
+                    <td>
+                        <a th:href="@{stuDetail(stuNo=${student.stuNo})}">[[${student.stuName}]]</a>
+                    </td>
+                    <td>[[${student.korScore}]]</td>
+                    <td>[[${student.engScore}]]</td>
+                    <td>[[${student.korScore + student.engScore}]]</td>
+                </tr>
+            </th:block>
+        </table>
+        <div class="btn-div">
+            <input type="button" value="학생등록" onclick="goReg()">
+            <!-- <button type="button">학생등록</button> 버튼 태그는 
+                 type이 button으로 들어가야 submit이 안 됨
+                 goReg는 내가 스크립트에서 임의로 정한 변수명-->
+        </div>
+    </div>
+
+    <script>
+        function goReg() {
+            location.href = 'regStu';
+            // a 태그와 같은 기능이자 regStu 컨트롤러로 가게 만드는 것
+            // (form 태그에 get 쓰는거랑 같은 기능)
+        }
+         
+    </script>
+</body>
+</html>

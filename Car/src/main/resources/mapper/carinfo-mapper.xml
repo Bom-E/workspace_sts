@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="carInfoMapper">
+    <resultMap id="carInfo" type="com.green.Car.vo.CarInfoVO">
+        <id     column="CAR_NUMBER"         property="carNumber"/>
+        <result column="CAR_NAME"           property="carName"/>
+        <result column="CAR_PRICE"          property="carPrice"/>
+        <result column="CAR_MAKER_NUMBER"   property="carMakerNumber"/>
+        <result column="CAR_MAKER_STR"      property="carMakerStr"/>
+    </resultMap>
+
+    <!-- 차 정보 등록 -->
+    <insert id="insertCarInfo">
+        INSERT INTO CAR_INFO (
+            CAR_NAME
+            , CAR_PRICE
+            , CAR_MAKER_NUMBER
+        ) VALUES (
+            #{carName}
+            , #{carPrice}
+            , #{carMakerNumber}
+        )
+    </insert>
+
+    <!-- 등록 된 차 정보 조회 -->
+    <select id="selectCarInfo" resultMap="carInfo">
+        SELECT CAR_NUMBER
+            , CAR_NAME
+            , CAR_MAKER_NUMBER
+            , CASE
+                WHEN CAR_MAKER_NUMBER = 1 THEN '현대'
+                WHEN CAR_MAKER_NUMBER = 2 THEN '기아'
+                WHEN CAR_MAKER_NUMBER = 3 THEN '쌍용'
+                END AS CAR_MAKER_STR
+        FROM CAR_INFO
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

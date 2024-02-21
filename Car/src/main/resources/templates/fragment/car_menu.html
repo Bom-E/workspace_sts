@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="menuFragment">
+
+            <ul class="nav nav-pills nav-fill nav-tabs">
+                <li class="nav-item" style="display: grid; background-color: lightblue;">
+                  <a class="nav-link" th:classappend="${page == 'main' ? 'active' : ' '}" onclick="location.href='/car/main?page=main'">홈</a>
+                </li>
+                <li class="nav-item" style="display: grid; background-color: lightblue;">
+                  <a class="nav-link" th:classappend="${page == 'carManagement' ? 'active' : ''}" onclick="location.href='/car/carManagement?page=carManagement'">차량관리</a>
+                </li>
+                <li class="nav-item" style="display: grid; background-color: lightblue;">
+                  <a class="nav-link"  th:classappend="${page == 'goSellInfoPage' ? 'active' : ''}" onclick="location.href='/car/goSellInfoPage?page=goSellInfoPage'">판매 정보 등록</a>
+                </li>
+                <li class="nav-item" style="display: grid; background-color: lightblue;">
+                  <a class="nav-link">판매 목록</a>
+                </li>
+              </ul>
+
+</th:block>
+
+</html>

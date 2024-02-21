@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.container{
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+ul > li {
+	width: 200px;
+	border: 1px solid black;
+	padding: 10px 6px;
+}
+.clickable{
+	cursor: pointer;
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+ol > li {
+	padding: 8px 0px;
+	list-style: none;
+}
+</style>
+</head>
+<body>
+<div class="container">
+	<ol>
+		<li>
+			<span class="clickable" onclick="setBackgroud()">1번메뉴</span>
+			<ul>
+				<li>1번의 하위메뉴1</li>
+				<li>1번의 하위메뉴2</li>
+				<li>1번의 하위메뉴3</li>
+			</ul>
+		</li>
+		<li>
+			<span class="clickable" onclick="setBackgroud()">2번메뉴</span>
+			<ul>
+				<li>2번의 하위메뉴1</li>
+				<li>2번의 하위메뉴2</li>
+				<li>2번의 하위메뉴3</li>
+			</ul>
+		</li>
+		<li>
+			<span class="clickable" onclick="setBackgroud()">3번메뉴</span>
+			<ul>
+				<li>3번의 하위메뉴1</li>
+				<li>3번의 하위메뉴2</li>
+				<li>3번의 하위메뉴3</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+<script type="text/javascript" src="test4.js"></script>
+</body>
+</html>

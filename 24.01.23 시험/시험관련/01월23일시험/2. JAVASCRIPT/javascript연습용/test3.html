@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.container{
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+table{
+	width: 600px;
+	margin: 0 auto;
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+tr, td{
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+<div class="container">
+	<table>
+		<tr>
+			<td><input type="checkbox" id="chkAll" onclick="checkAll()"></td>
+			<td>제 목</td>
+			<td>작성자</td>
+			<td>작성일</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" class="chk"></td>
+			<td>테스트 게시글 1</td>
+			<td>김자바</td>
+			<td>2024-01-01</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" class="chk"></td>
+			<td>테스트 게시글 2</td>
+			<td>박자바</td>
+			<td>2024-01-02</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" class="chk"></td>
+			<td>테스트 게시글 3</td>
+			<td>최자바</td>
+			<td>2024-01-03</td>
+		</tr>
+	</table>
+</div>
+
+<script type="text/javascript" src="test3.js"></script>
+</body>
+</html>

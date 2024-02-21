@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!--html 파일이 열릴때 같이 실행되는 css-->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="row mb-3">
+                <div class="offset-3 col-3">
+                    <th:bolck th:each="img : ${item.imgList}">
+                        <th:block th:if="${img.isMain eq 'Y'}">
+                            <img th:src="@{'/upload/' + ${img.attachedFileName}}">
+                        </th:block>
+                    </th:bolck>                    
+                </div>
+                <div class="col-3">
+                    <div class="row mb-3 mt-3">
+                        <div class="col-12">
+                            [[${item.itemName}]]
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <span>[[${#numbers.formatCurrency(item.itemPrice)}]]</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-4 mt-2" style="text-align: center;">
+                            수량 
+                        </div>
+                        <div class="col-8">
+                            <form id="insert-buy-form" action="/buy/insertBuy" method="post">
+                                <input type="hidden" name="itemCode" th:value="${item.itemCode}">
+                                <input type="hidden" name="totalPrice" th:value="${totalP}">
+                                <input name="buyCnt" type="number" class="form-control" min="1" value="1" th:oninput="setTotalPrice(this, [[${item.itemPrice}]])">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                        총 구매 가격 <span class="total-price-span">[[${#numbers.formatCurrency(item.itemPrice)}]]</span>
+                        </div>
+                    </div>
+                   
+                    <div class="row mb-4">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary" th:onclick="insertCart([[${session.loginInfo}]], [[${item.itemCode}]])">장바구니</button>
+                            <button type="button" class="btn btn-primary" onclick="insertBuy()">바로구매</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row mb-3"style="text-align: center;">
+                <div class="col">
+                    [[${item.itemIntro}]]
+                </div>
+            </div>
+            <th:block th:each="img : ${item.imgList}">
+                <th:block th:if="${img.isMain eq 'N'}">
+                    <div class="row">
+                        <div class="col text-center">
+                            <img th:src="@{'/upload/' + ${img.attachedFileName}}">
+                        </div>     
+                    </div>
+                </th:block>        
+            </th:block>                                   
+        </div>   
+    </div>    
+
+<th:block layout:fragment="content_js">
+    <script src="/js/content/item/item_detail.js"></script>
+</th:block>
+</html>

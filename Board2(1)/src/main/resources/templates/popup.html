@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    textarea{
+        resize: none;
+    }
+</style>
+</head>
+<body>
+    <h2>수정할 내용을 입력하세요.</h2>
+        <form action="/reply/updateReply" method="post">
+            <input type="hidden" name="replyNum" th:value="${reply.replyNum}">
+            <input type="hidden" name="boardNum" th:value="${reply.boardNum}">
+            <textarea name="content" cols="30" rows="10"></textarea>
+            <input type="submit" value="완료">
+        </form>
+</body>
+</html>

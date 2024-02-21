@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    .container{
+        width: 700px;
+        margin: 0 auto;
+    }
+    table{
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    td, tr{
+        border: 1px solid black;
+    }
+    .btn-div{
+        text-align: center;
+    }
+    .btn-span{
+        text-align: right;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="btn-span">
+        <th:block th:if="${session.loginInfo != null}">
+            [[${session.loginInfo.memberName}]]님 반갑습니다.
+            <a href="/member/logout">LOGOUT</a>
+        </th:block>
+    </div>
+    <div class="btn-span">
+        <th:block th:if="${session.loginInfo == null}">
+            <a href="/member/loginForm">LOGIN</a>
+        </th:block>
+    </div>
+
+<div>
+    <form action="/board/list" method="post">
+        <select name="searchType">
+            <!-- 이전 list.html에서 제목을 선택 했다면 -->
+            <!-- 새로 열리는 list.html 에서는 제목이 선택! -->
+            <!-- 이전 list.html에서 작성자를 선택 했다면 -->
+            <!-- 새로 열리는 list.html 에서는 작성자가 선택! -->
+            <option value="TITLE" th:selected="${searchVO.searchType == null or searchVO.searchType != 'WRITER'}">제목</option>
+            <option value="WRITER" th:selected="${searchVO.searchType == 'WRITER'}">작성자</option>
+        </select>
+        <input type="text" name="searchValue" th:value="${searchVO.searchValue}">
+        <input type="submit" value="검색">
+    </form>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <td>글번호</td>
+            <td>제목</td>
+            <td>작성자</td>
+            <td>작성일</td>
+            <td>조회수</td>
+        </tr>
+    </thead>
+    <tbody>
+        <th:block th:if="${#lists.isEmpty(selectAll)}">
+            <tr>
+                <td colspan="5">등록된 게시글이 없습니다.</td>
+            </tr>
+        </th:block>
+        <th:block th:unless="${#lists.isEmpty(selectAll)}">
+            <tr th:each="board : ${selectAll}">
+                <td>[[${board.boardNum}]]</td>
+                <td th:onclick="goDetail([[${board.boardNum}]])">[[${board.title}]]</td>
+                <td>[[${board.writer}]]</td>
+                <td>[[${board.createDate}]]</td>
+                <td>[[${board.readCnt}]]</td>
+            </tr>
+        </th:block>
+    </tbody>
+</table>
+
+<!-- 페이징 코드 -->
+<div>
+    <th:block th:if="${searchVO.prev}">
+        <a th:href="@{/board/list(nowPage=${searchVO.beginPage - 1}, searchType=${searchVO.searchType}, searchValue=${searchVO.searchValue})}">이전</a>
+    </th:block>
+        <th:block th:each="i : ${#numbers.sequence(searchVO.beginPage, searchVO.endPage), searchType=${searchVO.searchType}, searchValue=${searchVO.searchValue}}">
+            <a th:href="@{/board/list(nowPage=${i})}">[[${i}]]</a>
+        </th:block>
+    <th:block th:if="${searchVO.next}">
+        <a th:href="@{/board/list(nowPage=${searchVO.endPage + 1}, searchType=${searchVO.searchType}, searchValue=${searchVO.searchValue})}">다음</a>
+    </th:block>
+    
+</div>
+
+</div>
+<th:block th:if="${session.loginInfo != null}">
+    <div class="btn-div"><input type="button" value="글쓰기" onclick="gowrite()"></div>
+</th:block>
+    <script>
+        function gowrite(){
+            location.href = '/board/writePost';
+        }
+        function goDetail(boardNum){
+            location.href =`/board/detail?boardNum=${boardNum}`;
+        }
+        function goLogin(){
+            location.href = '/member/loginForm';
+        }
+    </script>
+</body>
+</html>

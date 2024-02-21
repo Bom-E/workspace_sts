@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/car_layout}" >
+
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/content/admin/main.css">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+
+<!-- 백그라운드 이미지 해야함. 클래스를 줘야 하는데 -->
+
+<div>
+
+    <div class="row justify-content-center">
+        <div style="height: 200px;"></div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col text-center mb-3">
+                    <div class="main-welcome" style="margin: 0% auto;">차량 관리 시스템</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-3 form-floating">
+                    <input type="text" class="form-control">
+                    <label style="font-size: 1rem;">아이디</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-3 form-floating">
+                    <input type="password" class="form-control">
+                    <label style="font-size: 1rem;">비밀번호</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-grid">
+                    <input class="btn btn-primary" type="button" value="로그인">
+                </div>
+                <div class="col d-grid">
+                    <input class="btn btn-primary" type="button" value="회원가입">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-end">
+                    <a href="" style="font-size: small;">아이디 및 비밀번호 찾기</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+</div>
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!--html 파일이 열릴때 같이 실행되는 js-->
+    <!-- <script src="/"></script> -->
+</th:block>
+</html>

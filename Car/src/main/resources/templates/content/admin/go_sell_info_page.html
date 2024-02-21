@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/car_layout}" >
+
+<th:block layout:fragment="content_css">
+    
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <div class="row">
+        <div class="col">
+            <form action="/car/insertSellInfo" method="post">
+                <table class="talble">
+                    <tr>
+                        <td>구매자명</td>
+                        <td colspan="3"><input type="text" name="customerName"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            색상
+                        </td>
+                        <td>
+                            <select class="form-select" name="salesColor">
+                                <option value="블랙">블랙</option>
+                                <option value="화이트">화이트</option>
+                                <option value="실버">실버</option>
+                                <option value="레드">레드</option>
+                            </select>
+                        </td>
+                        <td>모델</td>
+                        <td th:each="item : ${item}">
+                            <select name="carName">
+                                <option th:value="${}">[[${}]]</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>연락처</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input type="text">
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <input type="submit" value="등록">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    
+</th:block>
+</html>

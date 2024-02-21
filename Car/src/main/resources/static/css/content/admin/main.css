@@ -1,0 +1,7 @@
+.background{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url(car_main_image.jpeg);
+    background-size: cover;
+}

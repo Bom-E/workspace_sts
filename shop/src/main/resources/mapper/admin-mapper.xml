@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="adminMapper">
+	<resultMap id="item" type="com.green.shop.item.vo.ItemVO">
+        <result column="ITEM_CODE"  property="itemCode"/>
+        <result column="ITEM_NAME"  property="itemName"/>
+        <result column="ITEM_PRICE" property="itemPrice"/>
+        <result column="ITEM_STOCK" property="itemStock"/>
+        <result column="ITEM_INTRO" property="itemIntro"/>
+        <result column="REG_DATE"   property="regDate"/>
+        <result column="CATE_CODE"  property="cateCode"/>
+    </resultMap>
+
+    <!-- 상품 등록 -->
+    <insert id="insertItem">
+        INSERT INTO SHOP_ITEM (
+            ITEM_NAME
+            , ITEM_PRICE
+            , ITEM_INTRO
+            , CATE_CODE
+        ) VALUES(
+            #{itemName}
+            , #{itemPrice}
+            , #{itemIntro}
+            , #{cateCode}
+        )
+    </insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    .container{
+        width: 700px;
+        margin: 0 auto;
+    }
+    table{
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    td, tr{
+        border: 1px solid black;
+    }
+    .btn-div{
+        text-align: center;
+    }
+    .editPopup{
+        display: none;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+<table>
+    <tr>
+        <td>글 번호</td>
+        <td th:text="${detail.boardNum}"></td>
+        <td>작성자</td>
+        <td th:text="${detail.writer}"></td>
+        <td>작성일</td>
+        <td th:text="${detail.createDate}"></td>
+    </tr>
+    <tr>
+        <td>제목</td>
+        <td th:text="${detail.title}" colspan="5"></td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td th:text="${detail.content}" colspan="5"></td>
+    </tr>
+</table>
+</div>
+
+<div class="btn-div">
+<input type="button" value="뒤로가기" onclick="goBack()">
+    <th:block th:if="${session.loginInfo != null}">
+        <th:block th:if="${session.loginInfo.memberId eq detail.writer or session.loginInfo.isAdmin eq 'Y'}">
+            <input type="button" value="수정" th:onclick="goUpdate([[${detail.boardNum}]])"> 
+            <input type="button" value="삭제" th:onclick="letdelete([[${detail.boardNum}]])"> 
+        </th:block>
+    </th:block>
+</div>
+
+<th:block th:if="${session.loginInfo != null}">
+    <form action="/reply/insert" method="post">
+        <div class="btn-div">
+            <input type="hidden" name="boardNum" th:value="${detail.boardNum}">
+            <input type="text" name="content">
+            <input type="submit" value="등록">
+        </div>
+    </form>
+</th:block>
+
+<div>
+    <th:block th:if="${#lists.isEmpty(selectReply)}">
+        등록 된 댓글이 없습니다.
+    </th:block>
+    <th:block th:unless="${#lists.isEmpty(selectReply)}">
+        <th:block th:each="reply : ${selectReply}">
+            <p th:text="${reply.writer}"></p>
+            <p th:text="${reply.createDate}"></p>
+            <p th:text="${reply.content}"></p>
+            <input type="hidden" name="replyNum" th:value="${reply.replyNum}">
+                <th:block th:if="${session.loginInfo != null}">
+                    <th:block th:if="${session.loginInfo.memberId eq reply.writer or session.loginInfo.isAdmin eq 'Y'}">
+                        <input type="button" value="삭제" th:onclick="'deleteReply(' + ${reply.replyNum} + ',' + ${detail.boardNum} + ')'">
+                        <input type="button" value="수정" th:onclick="'goUpdateReply(' + ${reply.replyNum} + ',' + ${reply.boardNum} + ')'">
+                    </th:block>
+                </th:block>
+        </th:block>
+    </th:block>
+</div>
+
+<script>
+    function goBack(){
+        location.href = '/board/list';
+    }
+    function goUpdate(boardNum){
+        location.href = `/board/goToUpdate?boardNum=${boardNum}`;
+    }
+    function letdelete(boardNum){
+        location.href = `/board/deletePost?boardNum=${boardNum}`;
+    }
+    function deleteReply(replyNum, boardNum){
+        location.href = `/reply/deleteReply?replyNum=${replyNum}&boardNum=${boardNum}`;
+    }
+    function goUpdateReply(replyNum, boardNum){
+        const popup = window.open(`/reply/goUpdateReply?replyNum=${replyNum}&boardNum=${boardNum}`,"댓글 수정 내용","width=400, height=300, left=100, top=50");
+        popupClosed(popup);
+    }
+    function reloadPage(){
+        location.reload();
+    }
+</script>
+</body>
+</html>

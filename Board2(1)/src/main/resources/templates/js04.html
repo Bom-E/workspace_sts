@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="my-table">
+        <tbody>
+            <tr> <!-- table의 자식-->
+                <td>1</td> <!-- tr의 자식(밑의 td의 이전 형제 태그)-->
+                <td> <!-- tr의 자식-->
+                    <input type="text" value="1"> <!-- td의 자식(형제 없음)-->
+                </td> <!-- tr의 자식(위의 td의 다음 형제 태그)-->
+            </tr>
+            <tr id="my-tr"> <!-- table의 자식이자 위의 tr의 다음 형제 태그-->
+                <td>2</td>
+                <td>
+                    <input type="text" value="2">
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>
+                    <input type="text" value="3">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    <script>
+        //id 속성이 my-table인 태그의 자식 태그 선택
+        const tableTag = document.querySelector('#my-table');
+        
+        //자식 태그 접근, 호출 하자마자 배열
+        console.log(tableTag.children);
+        console.log(tableTag.children[0]);
+
+        //테이블 태그의 자식의 자식 태그 선택
+        console.log(tableTag.children[0].children);
+        
+        //부모 태그에 접근
+        const trTag = document.querySelector('#my-tr')
+        console.log(trTag.parentElement);
+
+        //부모의 부모 태그에 접근
+        console.log(trTag.parentElement.parentElement);
+
+        //형제 태그 접근
+        console.log(trTag.previousSibling);
+    </script>
+</body>
+</html>

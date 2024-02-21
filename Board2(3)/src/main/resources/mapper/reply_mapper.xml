@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="replyMapper">
+    <resultMap id="reply" type="com.green.Board2.vo.ReplyVO">
+        <result column="REPLY_NUM"      property="replyNum"/>
+        <result column="CONTENT"        property="content"/>
+        <result column="CREATE_DATE"    property="createDate"/>
+        <result column="WRITER"         property="writer"/>
+        <result column="BOARD_NUM"      property="boardNum"/>
+    </resultMap>
+
+    <insert id="insertReply">
+        INSERT INTO BOARD_REPLY(
+            CONTENT
+            , WRITER
+            , BOARD_NUM
+        ) VALUES (
+            #{content}
+            , #{writer} <!-- 세션, 세션에 저장 되어 있어서 컨트롤러로 가져갈 필요 없음 -->
+            , #{boardNum} <!-- 상세 게시글 -->
+        )
+        <!-- 데이터를 받아 와야 하는 것 기준 -->
+    </insert>
+
+    <delete id="deleteReply">
+        DELETE BOARD_REPLY
+        FROM REPLY_NUM = #{replyNum}
+    </delete>
+
+    <update id="updateReply">
+        UPDATE BOARD_REPLY
+        SET
+            CONTENT = #{content}
+            , CREATE_DATE = #{createDate}
+        WHERE REPLY_NUM = #{replyNum}
+    </update>
+
+    <select id="selectReplyList" resultMap="reply">
+        SELECT REPLY_NUM
+            , CONTENT
+            , CREATE_DATE
+            , WRITER
+        FROM BOARD_REPLY
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

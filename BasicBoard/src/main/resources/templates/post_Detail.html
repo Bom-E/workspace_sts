@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    .container{
+        width: 700px;
+        margin: 0 auto;
+    }
+    table{
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    td, tr{
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <table>
+        <tr>
+            <td>글 번호</td>
+            <td th:text="${boardDetail.boardNum}"></td>
+            <td>작성자</td>
+            <td th:text="${boardDetail.writer}"></td>
+            <td>작성일</td>
+            <td th:text="${boardDetail.createDate}"></td>
+        </tr>
+        <tr>
+            <td>제목</td>
+            <td th:text="${boardDetail.boardTitle}" colspan="5"></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td th:text="${boardDetail.boardContent}" colspan="5"></td>
+        </tr>
+    </table>
+    <div>
+        <input type="button" value="뒤로가기" th:onclick="goList()">
+        <input type="button" value="수정" th:onclick="|location.href='@{/goUpdate(boardNum=${boardDetail.boardNum})}'|">
+        <input type="button" value="삭제" th:onclick="|location.href='@{/deletePost(boardNum=${boardDetail.boardNum})}'|">
+    </div>
+</div>
+<script>
+    function goList(){
+        location.href = '/';
+    }
+</script>
+</body>
+</html>

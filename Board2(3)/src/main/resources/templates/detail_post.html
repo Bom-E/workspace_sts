@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    .container{
+        width: 700px;
+        margin: 0 auto;
+    }
+    table{
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    td, tr{
+        border: 1px solid black;
+    }
+    .btn-div{
+        text-align: center;
+    }
+    .regreply{
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+<table>
+    <tr>
+        <td>글 번호</td>
+        <td th:text="${detail.boardNum}"></td>
+        <td>작성자</td>
+        <td th:text="${detail.writer}"></td>
+        <td>조회수</td>
+        <td th:text="${detail.readCnt}"></td>
+        <td>작성일</td>
+        <td th:text="${detail.createDate}"></td>
+    </tr>
+    <tr>
+        <td>제목</td>
+        <td th:text="${detail.title}" colspan="7"></td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td th:text="${detail.content}" colspan="7"></td>
+    </tr>
+</table>
+</div>
+
+<div class="btn-div">
+    <input type="button" value="뒤로가기" onclick="goBack()">
+        <th:block th:if="${session.loginInfo != null}">
+            <th:block th:if="${session.loginInfo.memberId == detail.writer or session.loginInfo.isAdmin == 'Y'}">
+                <input type="button" value="수정" th:onclick="goUpdate([[${detail.boardNum}]])"> 
+                <input type="button" value="삭제" th:onclick="letdelete([[${detail.boardNum}]])"> 
+            </th:block>
+        </th:block>
+</div>
+
+<div class='regreply'>
+    <th:block th:if="${session.loginInfo != null}">
+        <form action="/reply/regReply" method="post">
+            <input type="hidden" name="boardNum" th:value="${detail.boardNum}">
+            <input type="text" name="content">
+            <input type="submit" value="등록">
+        </form>
+    </th:block>
+</div>
+
+<div>
+    <th:block th:if="${#lists.isEmpty(selectReplyList)}">
+        등록된 댓글이 없습니다.
+    </th:block>
+</div>
+
+<div th:each="reply : ${selectReplyList}">
+    <div>[[${reply.writer}]]</div>
+    <div>[[${reply.createDate}]]</div>
+    <div>[[${reply.content}]]</div>
+</div>
+
+<script>
+
+    const name = '홍';
+    const num1 = 10;
+    const num2 = 20;
+    console.log('안녕하세요~');
+    console.log(name + '이라는 사람은 국어점수가 ' + num1 + ' 영어점수가 ' + num2 + '입니다.');
+    //빽틱
+    console.log(`${name}이라는 사람은 국어점수가 ${num1} 영어점수가 ${num2} 입니다.`);
+
+    //변수 선언
+    //자바스크립트는 자료형이 없음. 내부적으로 자동적으로 적용
+    var a; //기존에 쓰던 변수 선언 문법
+    var aa= 10;
+    var bb = 'java';
+    
+    //자바스크립트 회사에서 추천하는 새로운 문법
+    const b = 10; //변하지 않은 값 저장(훨씬 많이 씀)
+    //b = 20; 오류 발생
+    let c = 10; //변하는 값 저장
+    c = 20;
+
+    function goBack(){
+        location.href = '/board/list';
+    }
+    function goUpdate(boardNum){
+        location.href = `/board/goToUpdate?boardNum=${boardNum}`;
+    }
+    function letdelete(boardNum){
+        location.href = `/board/deletePost?boardNum=${boardNum}`;
+    }
+    
+</script>
+</body>
+</html>

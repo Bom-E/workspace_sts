@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!--html 파일이 열릴때 같이 실행되는 css-->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <div class="row">
+        <div class="col">
+
+            <div class="row mb-3">
+                <div class="col">
+                    <table class="table table-borderless align-middle">
+                        <colgroup>
+                            <col width="15%">
+                            <col width="*">
+                            <col width="15%">
+                        </colgroup>
+                        <form action="/admin/buyListManage" method="post">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="rwo">
+                                            <div class="col">
+                                                <select class="form-select" name="searchType">
+                                                    <option value="BUY_CODE" th:selected="${searchBuyVO.searchType == null or searchBuyVO.searchType == 'BUY_CODE'}">구매번호</option>
+                                                    <option value="MEMBER_ID" th:selected="${searchBuyVO.searchType == 'MEMBER_ID'}">구매자ID</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" class="form-control" name="searchValue" th:value="${searchBuyVO.searchValue}">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                구 매 일 시
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">From</span>
+                                                    <input name="fromDate" type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1" th:value="${searchBuyVO.fromDate}">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="input-group">
+                                                    <span class="input-group-text">To</span>
+                                                    <input name="toDate" type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1" th:value="${searchBuyVO.toDate}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col d-grid">
+                                                <input type="submit" class="btn btn-primary" value="검색">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </form>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-stripeed table-hover align-middle text-center">
+                                <colgroup>
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="30%">
+                                    <col width="30%">
+                                    <col width="20%">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col">
+                                                    No
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col">
+                                                    구매번호
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col">
+                                                    구매자ID
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col">
+                                                    결제 금액
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col">
+                                                    구매일시
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <th:bolck th:each="buyVO, state : ${buyVOList}">
+                                        <tr th:onclick="showModal([[${buyVO.buyCode}]])">
+                                            <td>
+                                                [[${#lists.size(buyVOList) - state.index}]]
+                                            </td>
+                                            <td>
+                                                [[${buyVO.buyCode}]]
+                                            </td>
+                                            <td>
+                                                [[${buyVO.memberId}]]
+                                            </td>
+                                            <td>
+                                                [[${#numbers.formatCurrency(buyVO.buyPrice)}]]원
+                                            </td>
+                                            <td>
+                                                [[${buyVO.buyDate}]]
+                                            </td>                                           
+                                        </tr>
+                                    </th:bolck>
+                                </tbody>  
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Button trigger modal -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="buy-detail-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">구매 상세 내역</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-stripeed table-bordered text-center align-middle" style="font-size: small;">
+                    <thead>
+                        
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+                <table class="table table-stripeed text-center align-middle" style="font-size: small;">
+                    <thead class="table-group-divider table-light">
+                        <tr>
+                            <td>No</td>
+                            <td>구매상품</td>
+                            <td>수량</td>
+                            <td>결제 금액</td>
+                        </tr>
+                    </thead>
+                    <tbody class="detailTbody">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!--html 파일이 열릴때 같이 실행되는 js-->
+    <script src="/js/content/admin/admin_history.js"></script>
+</th:block>
+</html>
