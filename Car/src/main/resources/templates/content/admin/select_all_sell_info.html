@@ -4,16 +4,45 @@
     layout:decorate="~{fragment/car_layout}" >
 
 <th:block layout:fragment="content_css">
-    <!--html 파일이 열릴때 같이 실행되는 css-->
     <link rel="stylesheet" href="/">
 </th:block>
 
 <th:block layout:fragment="contentFragment">
-    <!--html 코드 작성-->
+    <div class="row">
+        <div class="col">
+            <table class="table table-stripped test-allign">
+                <thead>
+                    <tr>
+                        <td rowspan="2">No.</td>
+                        <td colspan="4">구매자정보</td>
+                        <td colspan="2">차량정보</td>
+                    </tr>
+                    <tr>
+                        <td>구매자명</td>
+                        <td>연락처</td>
+                        <td>구매일</td>
+                        <td>색상</td>
+                        <td>모델명</td>
+                        <td>금액</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="saleInfo, state : ${salesInfo}">
+                        <td>[[${#lists.size(salesInfo) - state.index}]]</td>
+                        <td>[[${saleInfo.customerName}]]</td>
+                        <td>[[${saleInfo.customerTel}]]</td>
+                        <td>[[${saleInfo.salesDate}]]</td>
+                        <td>[[${saleInfo.salesColor}]]</td>
+                        <td>[[${saleInfo.carInfo.carName}]]</td>
+                        <td>[[${saleInfo.carInfo.carPrice}]]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </th:block>
 
 <th:block layout:fragment="content_js">
-    <!--html 파일이 열릴때 같이 실행되는 js-->
     <script src="/"></script>
 </th:block>
 </html>

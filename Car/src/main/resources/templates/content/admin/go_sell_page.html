@@ -29,9 +29,11 @@
                             </select>
                         </td>
                         <td>모델</td>
-                        <td th:each="item : ${item}">
-                            <select name="carName">
-                                <option th:value="${}">[[${}]]</option>
+                        <td>
+                            <select class="form-select" name="carNumber">
+                                <th:block th:each="carInfo : ${carsInfo}">
+                                    <option th:value="${carInfo.carNumber}">[[${carInfo.carName}]]</option>
+                                </th:block>
                             </select>
                         </td>
                     </tr>

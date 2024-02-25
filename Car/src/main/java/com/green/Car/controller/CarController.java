@@ -6,6 +6,7 @@ import com.green.Car.vo.CarInfoVO;
 import com.green.Car.vo.SalesInfoVO;
 import jakarta.annotation.Resource;
 import org.codehaus.groovy.runtime.dgmimpl.arrays.ShortArrayPutAtMetaMethod;
+import org.codehaus.groovy.transform.SourceURIASTTransformation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ public class CarController {
     @Resource(name = "carService")
         private CarService carService;
 
+    //메인 페이지
     @GetMapping("/main")
     public String carMain(@RequestParam(name = "page", required = false, defaultValue = "main")String page, Model model){
 
@@ -26,9 +28,9 @@ public class CarController {
         return "content/admin/main";
     }
 
+    //차량 관리 시스템
     @GetMapping("/carManagement")
-    public String carManagement(@RequestParam(name = "page", required = false, defaultValue = "carManagement")String page, Model model
-                                ){
+    public String carManagement(@RequestParam(name = "page", required = false, defaultValue = "carManagement")String page, Model model){
 
         model.addAttribute("page", page);
 
@@ -39,7 +41,7 @@ public class CarController {
         return "content/admin/car_management";
     }
 
-    //차 정보 등록 시 동기 통신으로 insert 후 select
+    //차 정보 등록 및 조회
     @PostMapping("/insertCarInfo")
     public String insertCarInfo(CarInfoVO carInfoVO){
 
@@ -48,27 +50,41 @@ public class CarController {
         return "redirect:/car/carManagement";
     }
 
-    @GetMapping("/goSellInfoPage")
-    public String goSellInfoPage(@RequestParam(name = "page", required = false, defaultValue = "goSellInfoPage")String page, Model model){
+    //구매자 정보 등록 페이지로 이동
+    @GetMapping("/goSellPage")
+    public String goSellPage(@RequestParam(name = "page", required = false, defaultValue = "goSellPage")String page, Model model){
 
         model.addAttribute("page", page);
 
-        return "content/admin/go_sell_info_page";
+        //셀렉트 박스의 모델명 조회
+        List<CarInfoVO> carsInfo = carService.selectCarInfo();
+        model.addAttribute("carsInfo", carsInfo);
+
+
+        return "content/admin/go_sell_page";
     }
 
+    //구매자 정보 등록
     @PostMapping("/insertSellInfo")
-    public String insertSellInfo(SalesInfoVO salesInfoVO){
+    public String insertSellInfo(SalesInfoVO salesInfoVO, CarInfoVO carInfoVO){
 
         carService.insertSellInfo(salesInfoVO);
 
-        return "content/admin/select_all_sell_info";
+        System.out.println(salesInfoVO);
+
+        return "redirect:/car/selectAllSellInfo";
     }
 
+    //모든 구매 정보 조회
     @GetMapping("/selectAllSellInfo")
-    public String selectAllSellInfo(Model model){
+    public String selectAllSellInfo(Model model, @RequestParam(name = "page", required = false, defaultValue = "selectAllSellInfo") String page, SalesInfoVO salesInfoVO){
 
+        List<SalesInfoVO> salesInfo = carService.selectAllSellInfo();
 
+        model.addAttribute("salesInfo", salesInfo);
 
-        return "";
+        model.addAttribute("page", page);
+
+        return "content/admin/select_all_sell_info";
     }
 }

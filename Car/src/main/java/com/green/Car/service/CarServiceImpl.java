@@ -27,4 +27,9 @@ public class CarServiceImpl implements CarService{
     public void insertSellInfo(SalesInfoVO salesInfoVO) {
         sqlSession.insert("sellInfoMapper.insertSellInfo", salesInfoVO);
     }
+
+    @Override
+    public List<SalesInfoVO> selectAllSellInfo() {
+        return sqlSession.selectList("sellInfoMapper.selectAllSellInfo");
+    }
 }

@@ -3,13 +3,14 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="sellInfoMapper">
-    <resultMap id="" type="com.green.Car.vo.SalesInfoVO">
-        <id     column="SALES_NUMBER"  property="salesNumber"/>
-        <result column="CUSTOMER_NAME" property="customerName"/>
-        <result column="CUSTOMER_TEL"  property="customerTel"/>
-        <result column="SALES_COLOR"   property="salesColor"/>
-        <result column="SALES_DATE"    property="salesDate"/>
-        <result column="CAR_NUMBER"    property="carNumber"/>
+    <resultMap id="salesInfo" type="com.green.Car.vo.SalesInfoVO">
+        <id     column="SALES_NUMBER"   property="salesNumber"/>
+        <result column="CUSTOMER_NAME"  property="customerName"/>
+        <result column="CUSTOMER_TEL"   property="customerTel"/>
+        <result column="SALES_COLOR"    property="salesColor"/>
+        <result column="SALES_DATE"     property="salesDate"/>
+        <result column="CAR_NUMBER"     property="carNumber"/>
+        <collection property="carInfo" resultMap="carInfoMapper.carInfo"/>
     </resultMap>
 
     <!-- 구매자 정보 등록 -->
@@ -17,19 +18,30 @@
         INSERT INTO SALES_INFO (
             CUSTOMER_NAME
             , SALES_COLOR
-            , CAR_NUMBER
             , CUSTOMER_TEL
+            , CAR_NUMBER
         ) VALUES (
             #{customerName}
             , #{salesColor}
-            , #{carNumber}
             , #{customerTel}
+            , #{carNumber}
         )
     </insert>
 
     <!-- 판매 목록 화면 -->
-    <select id="" resultMap="">
-
+    <select id="selectAllSellInfo" resultMap="salesInfo">
+        SELECT SALES_NUMBER
+            , CUSTOMER_NAME
+            , CUSTOMER_TEL
+            , SALES_DATE
+            , SALES_COLOR
+            , CAR.CAR_NUMBER
+            , CAR_NAME
+            , CAR_PRICE
+        FROM SALES_INFO SALES
+        INNER JOIN CAR_INFO CAR
+        ON SALES.CAR_NUMBER = CAR.CAR_NUMBER
+        ORDER BY SALES_DATE DESC
     </select>
 
 </mapper>

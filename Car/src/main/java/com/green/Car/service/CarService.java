@@ -15,4 +15,7 @@ public interface CarService {
 
     //구매자 정보 등록
     void insertSellInfo(SalesInfoVO salesInfoVO);
+
+    //모든 판매목록 조회
+    List<SalesInfoVO> selectAllSellInfo();
 }
