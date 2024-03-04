@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0392c2fd-3d04-4009-823b-de622e7bc6a3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/python_study/파이썬_분석/DataFrame.ipynb" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/BasicBoard">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Board2">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Board2(1)">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Board2(3)">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Car">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/DbTest">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/FetchStudent">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/First">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Fragement">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Fragment2">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Library">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Second">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/StudentManager">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/shop">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/shop(1)">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2cyl7K0lcfwhluC5ng41GF5DvrB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/01-STUDY/dev/workspace_sts"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0392c2fd-3d04-4009-823b-de622e7bc6a3" name="Changes" comment="" />
+      <created>1709091530161</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709091530161</updated>
+    </task>
+    <servers />
+  </component>
+</project>

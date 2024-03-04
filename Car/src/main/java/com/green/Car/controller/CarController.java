@@ -77,7 +77,7 @@ public class CarController {
 
     //모든 구매 정보 조회
     @GetMapping("/selectAllSellInfo")
-    public String selectAllSellInfo(Model model, @RequestParam(name = "page", required = false, defaultValue = "selectAllSellInfo") String page, SalesInfoVO salesInfoVO){
+    public String selectAllSellInfo(Model model, @RequestParam(name = "page", required = false, defaultValue = "selectAllSellInfo") String page){
 
         List<SalesInfoVO> salesInfo = carService.selectAllSellInfo();
 
