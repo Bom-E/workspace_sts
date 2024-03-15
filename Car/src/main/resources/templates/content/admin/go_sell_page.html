@@ -9,50 +9,41 @@
 
 <th:block layout:fragment="contentFragment">
     <div class="row">
-        <div class="col" style="margin-left: 250px; margin-top: 50px;">
+        <div class="col" style="margin-left: 150px; margin-top: 50px;">
             <form action="/car/insertSellInfo" method="post">
-                <table class="talble">
-                    <tr>
-                        <td>구매자명</td>
-                        <td colspan="3"><input class="form-control d-grid" type="text" name="customerName"></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            색상
-                        </td>
-                        <td>
-                            <select class="form-select" name="salesColor">
+                <div class="row">
+                    <div class="col-9">
+                        구매자명 <input class="form-control d-grid" type="text" name="customerName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        색상 <select class="form-select" name="salesColor">
                                 <option value="블랙">블랙</option>
                                 <option value="화이트">화이트</option>
                                 <option value="실버">실버</option>
                                 <option value="레드">레드</option>
                             </select>
-                        </td>
-                        <td>모델</td>
-                        <td>
-                            <select class="form-select" name="carNumber">
+                    </div>
+                    <div class="col-4">
+                        모델 <select class="form-select" name="carNumber">
                                 <th:block th:each="carInfo : ${carsInfo}">
                                     <option th:value="${carInfo.carNumber}">[[${carInfo.carName}]]</option>
                                 </th:block>
                             </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>연락처</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <input class="form-control" type="text" name="customerTel">
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <input type="submit" value="등록" class="btn btn-primary">
-                        </td>
-                    </tr>
-                </table>
-            </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-9 mb-2">
+                        연락처 <input class="form-control" type="text" name="customerTel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-lg-6 col-sm-12 text-lg-center">
+                        <input type="submit" value="등록" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>            
         </div>
     </div>
 </th:block>
