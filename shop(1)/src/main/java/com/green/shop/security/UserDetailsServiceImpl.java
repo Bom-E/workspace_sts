@@ -3,6 +3,8 @@ package com.green.shop.security;
 import com.green.shop.member.service.MemberService;
 import com.green.shop.member.vo.MemberVO;
 import jakarta.annotation.Resource;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,9 +23,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     // 시큐리티가 로그인을 처리할 수 있도록
     // 로그인 정보를 시큐리티에게 전달하는 역할
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username){
         // 로그인을 시도하는 유저의 정보(id, pw, roll)를 조회
         MemberVO loginInfo = memberService.login(username);
+
+        if(loginInfo == null){
+            throw new BadCredentialsException("error");
+        }
 
         // 로그인 하려는 유저 정보를 시큐리티에게 넘겨 줌
         User user = (User) User.builder()

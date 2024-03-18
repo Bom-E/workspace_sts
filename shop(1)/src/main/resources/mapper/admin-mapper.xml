@@ -56,9 +56,9 @@
         WHERE 1 = 1
         <if test='searchValue != null and !searchValue.equals("")'>
             AND ${searchType} LIKE CONCAT('%', #{searchValue}, '%')
-        </if>
+        </if>use
         <if test='fromDate != null and !fromDate.equals("")'>
-            AND DATE_FORMAT(BUY_DATE, '%Y-%m-%d') &gt;= #{fromDate}
+            AND DATE_FORMAT(BUY_DATE, '%Ya-%m-%d') &gt;= #{fromDate}
         </if>
         <if test='toDate != null and !toDate.equals("")'>
             AND DATE_FORMAT(BUY_DATE, '%Y-%m-%d') &lt;= #{toDate}

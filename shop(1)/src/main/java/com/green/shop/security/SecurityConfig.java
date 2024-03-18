@@ -50,8 +50,8 @@ public class SecurityConfig {
                                     .usernameParameter("memberId")
                                     .passwordParameter("memberPw")
                                     .loginProcessingUrl("/member/login")
-                                    .defaultSuccessUrl("/")
-                                    .failureUrl("/member/loginForm")
+                                    //.defaultSuccessUrl("/")
+                                    //.failureUrl("/member/loginForm")
                                     // 로그인 성공 시 실행시킬 클래스의 객체
                                     .successHandler(loginSuccessHandler)
                                     // 로그인 실패 시 실행시킬 클래스의 객체
