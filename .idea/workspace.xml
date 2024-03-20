@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0392c2fd-3d04-4009-823b-de622e7bc6a3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop(1)/src/main/java/com/green/shop/security/LoginFailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/shop(1)/src/main/java/com/green/shop/security/LoginFailHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop(1)/src/main/java/com/green/shop/security/LoginSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/shop(1)/src/main/java/com/green/shop/security/LoginSuccessHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop(1)/src/main/java/com/green/shop/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/shop(1)/src/main/java/com/green/shop/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop(1)/src/main/java/com/green/shop/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/shop(1)/src/main/java/com/green/shop/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop(1)/src/main/resources/mapper/admin-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shop(1)/src/main/resources/mapper/admin-mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop(1)/src/main/resources/templates/content/member/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/shop(1)/src/main/resources/templates/content/member/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +87,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/01-STUDY/dev/workspace_sts"
+    "last_opened_file_path": "D:/01-STUDY/dev/workspace_sts/Board2(1)"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
